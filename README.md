@@ -1,12 +1,6 @@
 # Document-SIEM-Homelab-Elastic
 Security monitoring and threat detection lab using Elasticsearch, Kibana, ElastAlert and Beats.
 
-# SIEM Home Lab
-
-A practical SIEM home lab focused on centralized log collection, threat detection, event correlation and security monitoring across Linux and Windows systems.
-
-The project was built using the Elastic Stack ecosystem and a set of Beats agents responsible for collecting logs, system metrics and network telemetry. Custom ElastAlert rules were implemented to detect common attack scenarios such as brute-force attempts, successful logins after multiple failed attempts and port scanning.
-
 ## Project Goals
 
 The main goal of this project was to build a functional security monitoring environment that simulates a small SOC-like infrastructure.
@@ -29,3 +23,38 @@ The environment consists of three main parts:
 
 Logs and telemetry are collected from endpoint machines and sent to the central Elasticsearch instance. Kibana is used for visualization, while ElastAlert is responsible for rule-based detection and alert generation.
 
+```mermaid
+flowchart LR
+
+    subgraph HOST["Physical Host"]
+
+        subgraph KALI["Kali Linux VM"]
+            KBEATS["Filebeat<br/>Auditbeat<br/>Packetbeat<br/>Metricbeat"]
+        end
+
+        subgraph WIN["Windows 11 VM"]
+            WBEATS["Winlogbeat<br/>Auditbeat<br/>Packetbeat<br/>Metricbeat"]
+        end
+
+    end
+
+    subgraph AZURE["Azure"]
+
+        NSG["NSG Rules<br/>Restricted Administrative Access"]
+
+        subgraph SIEM["Ubuntu SIEM Server"]
+            ES["Elasticsearch"]
+            KB["Kibana"]
+            EA["ElastAlert"]
+        end
+
+    end
+
+    KBEATS --> ES
+    WBEATS --> ES
+
+    ES --> KB
+    ES --> EA
+
+    NSG -. Protects .-> SIEM
+```
