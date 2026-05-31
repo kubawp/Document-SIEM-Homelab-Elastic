@@ -21,6 +21,8 @@ The environment consists of three main parts:
 - **Linux Host** — Kali Linux machine generating Linux logs and network telemetry
 - **Windows Host** — Windows 11 machine generating Windows event logs
 
+The central SIEM server was deployed on an Ubuntu virtual machine hosted in Microsoft Azure. To reduce the attack surface and limit unauthorized access, administrative services were protected using Azure NSG rules. Access to management interfaces was restricted to trusted source address.
+
 Logs and telemetry are collected from endpoint machines and sent to the central Elasticsearch instance. Kibana is used for visualization, while ElastAlert is responsible for rule-based detection and alert generation.
 
 ```mermaid
