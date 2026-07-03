@@ -25,38 +25,4 @@ The central SIEM server was deployed on an Ubuntu virtual machine hosted in Micr
 
 Logs and telemetry are collected from endpoint machines and sent to the central Elasticsearch instance. Kibana is used for visualization, while ElastAlert is responsible for rule-based detection and alert generation.
 
-```mermaid
-flowchart LR
-
-    subgraph HOST["Physical Host"]
-
-        subgraph KALI["Kali Linux VM"]
-            KBEATS["Filebeat<br/>Auditbeat<br/>Packetbeat<br/>Metricbeat"]
-        end
-
-        subgraph WIN["Windows 11 VM"]
-            WBEATS["Winlogbeat<br/>Auditbeat<br/>Packetbeat<br/>Metricbeat"]
-        end
-
-    end
-
-    subgraph AZURE["Azure"]
-
-        NSG["NSG Rules<br/>Restricted Administrative Access"]
-
-        subgraph SIEM["Ubuntu SIEM Server"]
-            ES["Elasticsearch"]
-            KB["Kibana"]
-            EA["ElastAlert"]
-        end
-
-    end
-
-    KBEATS --> ES
-    WBEATS --> ES
-
-    ES --> KB
-    ES --> EA
-
-    NSG -. Protects .-> SIEM
-```
+![SIEM Homelab Infrastructure](./images/siem_infra.png)
