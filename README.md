@@ -40,4 +40,38 @@ Logs and telemetry are collected from endpoint machines and sent to the central 
 | Auditbeat | File and system activity monitoring |
 | Metricbeat | System performance monitoring |
 
+# Attack Simulation & Detection
 
+The following scenarios were implemented to validate the effectiveness of the deployed SIEM environment.
+
+# SSH Brute Force Detection (Linux)
+
+A brute-force attack against the Linux SSH service was simulated using Hydra. 
+
+## Step 1 – Attack Simulation
+
+![SSH Brute Force Simulation - Hydra](./images/ssh_brute_force_hydra.png)
+
+---
+
+## Step 2 – Event Collection
+
+The authentication attempts generated during the attack were collected from Linux authentication logs by Filebeat and forwarded to Elasticsearch.
+
+![SSH Brute Force Simulation - Logs](./images/ssh_brute_force_logs.png)
+
+---
+
+## Step 3 – Detection
+
+The custom ElastAlert rule detected multiple failed authentication attempts.
+
+Rule:
+
+➡️ `detection-rules/linux/ssh_bruteforce.yaml`
+
+> **Note:** The detection threshold used in this laboratory environment was intentionally lowered to enable quick validation during testing. In a production environment, thresholds and time windows should be adjusted to reflect normal user behavior and reduce the likelihood of false positives.
+
+![SSH Brute Force Simulation - Alert](./images/ssh_brute_force_alert.png)
+
+---
