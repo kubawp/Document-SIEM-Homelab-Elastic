@@ -26,3 +26,18 @@ The central SIEM server was deployed on an Ubuntu virtual machine hosted in Micr
 Logs and telemetry are collected from endpoint machines and sent to the central Elasticsearch instance. Kibana is used for visualization, while ElastAlert is responsible for rule-based detection and alert generation.
 
 ![SIEM Homelab Infrastructure](./images/siem_infra.png)
+
+## Technology Stack
+
+| Component | Purpose |
+|-----------|---------|
+| Elasticsearch | Centralized log storage and search engine |
+| Kibana | Log analysis and visualization |
+| ElastAlert | Detection rules and alerting |
+| Filebeat | Linux log collection |
+| Winlogbeat | Windows Event Log collection |
+| Packetbeat | Network traffic monitoring |
+| Auditbeat | File and system activity monitoring |
+| Metricbeat | System performance monitoring |
+
+
