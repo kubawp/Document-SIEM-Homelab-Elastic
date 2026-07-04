@@ -75,3 +75,35 @@ Rule:
 ![SSH Brute Force Simulation - Alert](./images/ssh_brute_force_alert.png)
 
 ---
+
+# Successful SSH Brute Force Attack Detection (Linux)
+
+Following the brute-force attack, Hydra successfully authenticated using the discovered password. To improve the realism of the test, the target account password was intentionally changed to a commonly used password contained in the `rockyou.txt` wordlist. This allowed Hydra to successfully discover valid credentials.
+
+A correlation rule was implemented to detect successful authentication following a previously detected brute-force attack.
+
+## Step 1 – Attack Simulation and Successful Authentication
+
+![SSH Successful Brute Force Simulation - Hydra](./images/ssh_successful_brute_force_hydra.png)
+
+---
+
+## Step 2 – Event Collection
+
+Filebeat collected both the failed authentication attempts and the final successful login event.
+
+![SSH Successful Brute Force Simulation - Hydra](./images/ssh_successful_brute_force_logs.png)
+
+---
+
+## Step 3 – Detection
+
+The correlation rule identified a successful login occurring shortly after a brute-force attack.
+
+Rule:
+
+➡️ `detection-rules/linux/ssh_successful_bruteforce.yaml`
+
+![SSH Successful Brute Force Simulation - Hydra](./images/ssh_successful_brute_force_alert.png)
+
+---
