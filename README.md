@@ -138,4 +138,34 @@ Rule:
 
 The project includes several dashboards supporting security monitoring and incident investigation.
 
+## Linux Authentication Dashboard
+
+This dashboard provides visibility into Linux authentication activity collected by Filebeat.
+
+It includes:
+
+- SSH successful and failed login attempts
+- FTP successful and failed login attempts
+- Recently executed sudo commands
+- Distribution of Linux system processes
+
+![Linux Authentication Dashboard](./images/filebeat_dashboard.png)
+
+---
+
+## Windows Authentication Dashboard
+
+This dashboard focuses on Windows authentication events collected by Winlogbeat.
+
+It provides:
+
+- Successful and failed SSH logins
+- Successful and failed RDP logins
+- Windows Event Log severity overview
+- Security event summary
+
+![Windows Authentication Dashboard](./images/winlogbeat_dashboard.png)
+
+---
+
 
