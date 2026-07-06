@@ -78,7 +78,7 @@ Rule:
 
 # Successful SSH Brute Force Attack Detection (Linux)
 
-Following the brute-force attack, Hydra successfully authenticated using the discovered password. To improve the realism of the test, the target account password was intentionally changed to a commonly used password contained in the `rockyou.txt` wordlist. This allowed Hydra to successfully discover valid credentials.
+Following the brute-force attack, Hydra successfully authenticated using the discovered password. To emulate a realistic attack scenario, the target account password was intentionally changed to a commonly used password contained in the `rockyou.txt` wordlist. This allowed Hydra to successfully discover valid credentials.
 
 A correlation rule was implemented to detect successful authentication following a previously detected brute-force attack.
 
@@ -92,7 +92,7 @@ A correlation rule was implemented to detect successful authentication following
 
 Filebeat collected both the failed authentication attempts and the final successful login event.
 
-![SSH Successful Brute Force Simulation - Hydra](./images/ssh_successful_brute_force_logs.png)
+![SSH Successful Brute Force Simulation - Logs](./images/ssh_successful_brute_force_logs.png)
 
 ---
 
@@ -104,6 +104,38 @@ Rule:
 
 ➡️ `detection-rules/linux/ssh_successful_bruteforce.yaml`
 
-![SSH Successful Brute Force Simulation - Hydra](./images/ssh_successful_brute_force_alert.png)
+![SSH Successful Brute Force Simulation - Alert](./images/ssh_successful_brute_force_alert.png)
 
 ---
+
+# Successful RDP Login after Brute Force (Windows)
+
+Following multiple failed authentication attempts, a successful RDP login was performed.
+
+A correlation rule was created to detect a successful login immediately following a previously detected brute-force attack.
+
+## Step 1 – Event Collection
+
+Winlogbeat collected both failed and successful Windows authentication events (Event ID's 4625 and 4624).
+
+![RDP Successful Brute Force Simulation - Logs](./images/rdp_successful_brute_force_logs.png)
+
+---
+
+## Step 2 – Detection
+
+The correlation rule generated an alert indicating a successful login after a brute-force attack.
+
+Rule:
+
+➡️ `detection-rules/windows/rdp_successful_bruteforce.yaml`
+
+![RDP Successful Brute Force Simulation - Alert](./images/rdp_successful_brute_force_alert.png)
+
+---
+
+# Kibana Dashboards
+
+The project includes several dashboards supporting security monitoring and incident investigation.
+
+
