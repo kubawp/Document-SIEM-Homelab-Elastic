@@ -1,0 +1,13 @@
+name: "Successful SSH Login Windows"
+type: any
+index: winlogbeat-*
+
+filter:
+- query:
+    query_string:
+      query: 'event.code:"4624" AND message:"successfully logged on" AND message:"sshd-session.exe"event.code:"4624" AND message:"successfully logged on" AND message:"sshd-session.exe"'
+
+alert:
+- command
+
+command: "echo SSH SUCCESS WINDOWS"

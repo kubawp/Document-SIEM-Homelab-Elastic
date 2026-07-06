@@ -1,0 +1,13 @@
+name: "Successful FTP Login Linux"
+type: any
+index: filebeat-*
+
+filter:
+- query:
+    query_string:
+      query: 'message:"230 Login successful"'
+
+alert:
+- command
+
+command: "echo FTP SUCCESSFUL LOGIN"

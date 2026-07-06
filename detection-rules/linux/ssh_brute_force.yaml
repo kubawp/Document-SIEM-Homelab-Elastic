@@ -1,0 +1,17 @@
+name: "Brute-force SSH Linux"
+type: frequency
+index: filebeat-*
+
+num_events: 15
+
+timeframe:
+  minutes: 20
+
+filter:
+- query:
+    query_string:
+      query: 'message: "Failed password for" AND message:sshd'
+alert:
+- command
+
+command: "echo SSH BRUTEFORCE LINUX"

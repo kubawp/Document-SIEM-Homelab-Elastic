@@ -1,0 +1,17 @@
+name: "Brute-force RDP Windows"
+type: frequency
+index: winlogbeat-*
+
+num_events: 15
+
+timeframe:
+  minutes: 20
+
+filter:
+- query:
+    query_string:
+      query: 'event.code:"4625" AND winlog.event_data.LogonType:"3"'
+alert:
+- command
+
+command: "echo RDP BRUTEFORCE WINDOWS"

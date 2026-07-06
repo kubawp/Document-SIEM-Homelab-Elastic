@@ -1,0 +1,25 @@
+name: "SUCCESSFUL Brute-force FTP Linux"
+
+type: cardinality
+
+index: elastalert*
+
+cardinality_field: rule_name
+max_cardinality: 1
+
+filter:
+- terms:
+    rule_name:
+      - "Successful FTP Login Linux"
+      - "Brute-force FTP Linux"
+
+- term:
+    alert_sent: true
+
+timeframe:
+  minutes: 3
+
+alert:
+- command
+
+command: "echo FTP BRUTEFORCE SUCCESS LINUX"

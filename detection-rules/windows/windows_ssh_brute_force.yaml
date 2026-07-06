@@ -1,0 +1,17 @@
+name: "Brute-force SSH Windows"
+type: frequency
+index: winlogbeat-*
+
+num_events: 15
+
+timeframe:
+  minutes: 20
+
+filter:
+- query:
+    query_string:
+      query: 'event.code:"4625" AND message:"failed to log on" AND message:"sshd-session.exe"'
+alert:
+- command
+
+command: "echo SSH BRUTEFORCE WINDOWS"

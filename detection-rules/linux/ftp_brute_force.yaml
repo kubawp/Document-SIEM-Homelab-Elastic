@@ -1,0 +1,17 @@
+name: "Brute-force FTP Linux"
+type: frequency
+index: filebeat-*
+
+num_events: 15
+
+timeframe:
+  minutes: 20
+
+filter:
+- query:
+    query_string:
+      query: 'message: "530 Login incorrect"'
+alert:
+- command
+
+command: "echo FTP BRUTEFORCE LINUX"

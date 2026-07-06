@@ -1,0 +1,13 @@
+name: "Successful RDP Login Windows"
+type: any
+index: winlogbeat-*
+
+filter:
+- query:
+    query_string:
+      query: 'event.code:"4624" AND winlog.event_data.LogonType:"3"'
+
+alert:
+- command
+
+command: "echo RDP SUCCESS WINDOWS"

@@ -1,0 +1,13 @@
+name: "Successful SSH Login Linux"
+type: any
+index: filebeat-*
+
+filter:
+- query:
+    query_string:
+      query: 'message: "Accepted password" AND message:sshd'
+
+alert:
+- command
+
+command: "SSH SUCCESS LINUX"
