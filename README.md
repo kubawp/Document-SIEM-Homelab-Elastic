@@ -68,7 +68,7 @@ The custom ElastAlert rule detected multiple failed authentication attempts.
 
 Rule:
 
-➡️ `detection-rules/linux/ssh_bruteforce.yaml`
+➡️ `detection-rules/linux/ssh_brute_force.yaml`
 
 > **Note:** The detection threshold used in this laboratory environment was intentionally lowered to enable quick validation during testing. In a production environment, thresholds and time windows should be adjusted to reflect normal user behavior and reduce the likelihood of false positives.
 
@@ -102,7 +102,7 @@ The correlation rule identified a successful login occurring shortly after a bru
 
 Rule:
 
-➡️ `detection-rules/linux/ssh_successful_bruteforce.yaml`
+➡️ `detection-rules/linux/ssh_succesful_brute_force.yaml`
 
 ![SSH Successful Brute Force Simulation - Alert](./images/ssh_successful_brute_force_alert.png)
 
@@ -128,7 +128,7 @@ The correlation rule generated an alert indicating a successful login after a br
 
 Rule:
 
-➡️ `detection-rules/windows/rdp_successful_bruteforce.yaml`
+➡️ `detection-rules/windows/windows_rdp_successful_brute_force.yaml`
 
 ![RDP Successful Brute Force Simulation - Alert](./images/rdp_successful_brute_force_alert.png)
 
